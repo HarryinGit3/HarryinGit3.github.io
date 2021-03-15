@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Tensorflow学习系列(1)——环境配置 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="写在此系列前的一些话&amp;emsp;&amp;emsp;在人工智能、深度学习爆红的年代，今天我也来凑凑热闹，本人也是一个GIS在读研究生，所以对深度学习方面可能还有很多理解不透彻的地方，这个系列就是本人一个梳理和学习的过程，如果学习过中涉及一些代码和本人学习的教程，我也会在每篇的末尾贴上Github地址以及学习视频的地址。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tensorflow学习系列(1)——环境配置">
+<meta property="og:url" content="http://example.com/2021/03/15/tensorflow%E5%AD%A6%E4%B9%A0%E7%B3%BB%E5%88%97(1)/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="写在此系列前的一些话&amp;emsp;&amp;emsp;在人工智能、深度学习爆红的年代，今天我也来凑凑热闹，本人也是一个GIS在读研究生，所以对深度学习方面可能还有很多理解不透彻的地方，这个系列就是本人一个梳理和学习的过程，如果学习过中涉及一些代码和本人学习的教程，我也会在每篇的末尾贴上Github地址以及学习视频的地址。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://images.harryin.cn/tensorflow1image001.png">
+<meta property="og:image" content="http://images.harryin.cn/tensorflow1image002.png">
+<meta property="og:image" content="http://images.harryin.cn/tensorflow1image003.png">
+<meta property="og:image" content="http://images.harryin.cn/tensorflow1image004.png">
+<meta property="og:image" content="http://images.harryin.cn/tensorflow1image005.png">
+<meta property="og:image" content="http://images.harryin.cn/tensorflow1image006.png">
+<meta property="og:image" content="http://images.harryin.cn/tensorflow1image007.png">
+<meta property="og:image" content="http://images.harryin.cn/tensorflow1image008.png">
+<meta property="og:image" content="http://images.harryin.cn/tensorflow1image009.png">
+<meta property="og:image" content="http://images.harryin.cn/tensorflow1image010.png">
+<meta property="og:image" content="http://images.harryin.cn/tensorflow1image011.png">
+<meta property="og:image" content="http://images.harryin.cn/tensorflow1image012.png">
+<meta property="og:image" content="http://images.harryin.cn/tensorflow1image013.png">
+<meta property="og:image" content="http://images.harryin.cn/tensorflow1image014.png">
+<meta property="og:image" content="http://images.harryin.cn/tensorflow1image015.png">
+<meta property="og:image" content="http://images.harryin.cn/tensorflow1image016.png">
+<meta property="og:image" content="http://images.harryin.cn/tensorflow1image017.png">
+<meta property="og:image" content="http://images.harryin.cn/tensorflow1image018.png">
+<meta property="og:image" content="http://images.harryin.cn/tensorflow1image019.png">
+<meta property="og:image" content="http://images.harryin.cn/tensorflow1image020.png">
+<meta property="og:image" content="http://images.harryin.cn/tensorflow1image021.png">
+<meta property="article:published_time" content="2021-03-15T14:55:53.099Z">
+<meta property="article:modified_time" content="2018-07-19T08:00:14.392Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="机器学习,tensorflow,深度学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://images.harryin.cn/tensorflow1image001.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-tensorflow学习系列(1)" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/03/15/tensorflow%E5%AD%A6%E4%B9%A0%E7%B3%BB%E5%88%97(1)/" class="article-date">
+  <time class="dt-published" datetime="2021-03-15T14:55:53.099Z" itemprop="datePublished">2021-03-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Tensorflow学习系列(1)——环境配置
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="写在此系列前的一些话"><a href="#写在此系列前的一些话" class="headerlink" title="写在此系列前的一些话"></a>写在此系列前的一些话</h2><p>&emsp;&emsp;在人工智能、深度学习爆红的年代，今天我也来凑凑热闹，本人也是一个GIS在读研究生，所以对深度学习方面可能还有很多理解不透彻的地方，这个系列就是本人一个梳理和学习的过程，如果学习过中涉及一些代码和本人学习的教程，我也会在每篇的末尾贴上Github地址以及学习视频的地址。</p>
+<span id="more"></span>
+<h2 id="系列介绍"><a href="#系列介绍" class="headerlink" title="系列介绍"></a>系列介绍</h2><p>&emsp;&emsp;本人学习深度学习框架是Tensorflow以及后期会介绍Keras的部分，学习的内容会按照《Tensorflow实战Google深度学习框架》这本书来进行以及youtube上的一些学习视频来进行相关案例补充和介绍。<br>&emsp;&emsp;本文介绍一些Tensorflow GPU版本的环境搭建。</p>
+<h2 id="Tensorflow版本介绍"><a href="#Tensorflow版本介绍" class="headerlink" title="Tensorflow版本介绍"></a>Tensorflow版本介绍</h2><p>&emsp;&emsp;Tensorflow分为GPU和CPU版本，GPU版本必须要有英伟达的显卡才可以进行安装配置，CPU简单直接安装即可。<br>&emsp;&emsp;本文介绍基于Ubuntu1604版本的TensorflowGPU版本安装介绍。</p>
+<h2 id="Ubuntu-Server-1604安装部署"><a href="#Ubuntu-Server-1604安装部署" class="headerlink" title="Ubuntu Server 1604安装部署"></a>Ubuntu Server 1604安装部署</h2><h3 id="选择语言"><a href="#选择语言" class="headerlink" title="选择语言"></a>选择语言</h3><p>&emsp;&emsp;建议选择英语，亲测选择简体中文之后，后面安装会出错。<br>    <img src="http://images.harryin.cn/tensorflow1image001.png" alt="语言选择英语"></p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>&emsp;&emsp;选择安装Install Ubuntu Server<br><img src="http://images.harryin.cn/tensorflow1image002.png" alt="Install界面"><br>&emsp;&emsp;后面几步默认即可<br><img src="http://images.harryin.cn/tensorflow1image003.png" alt="语言选择"><br><img src="http://images.harryin.cn/tensorflow1image004.png" alt="地点选择"><br><img src="http://images.harryin.cn/tensorflow1image005.png" alt="配置键盘"><br><img src="http://images.harryin.cn/tensorflow1image006.png" alt="键盘配置选择"><br><img src="http://images.harryin.cn/tensorflow1image007.png" alt="网络配置"><br><img src="http://images.harryin.cn/tensorflow1image008.png" alt="不配置网络"></p>
+<h3 id="配置主机名和用户"><a href="#配置主机名和用户" class="headerlink" title="配置主机名和用户"></a>配置主机名和用户</h3><p>&emsp;&emsp;设置主机名<br><img src="http://images.harryin.cn/tensorflow1image009.png" alt="设置主机名"><br>&emsp;&emsp;创建用户<br><img src="http://images.harryin.cn/tensorflow1image010.png" alt="创建用户"><br><img src="http://images.harryin.cn/tensorflow1image011.png" alt="确认创建用户"><br>&emsp;&emsp;设置密码<br><img src="http://images.harryin.cn/tensorflow1image012.png" alt="设置密码"></p>
+<h3 id="分区"><a href="#分区" class="headerlink" title="分区"></a>分区</h3><p>&emsp;&emsp;选择自定义分区（这一步是上网查询所写）实际选择第二项即可，后面依次默认就可以安装成功。<br><img src="http://images.harryin.cn/tensorflow1image013.png" alt="自定义分区"><br>    &emsp;&emsp;选择挂载上的分区<br><img src="http://images.harryin.cn/tensorflow1image014.png" alt="选择挂载分区"><br>    &emsp;&emsp;新建分区<br><img src="http://images.harryin.cn/tensorflow1image015.png" alt="新建分区"><br>    &emsp;&emsp;然后看到这个图片的时候就是安装成功的时候，后面重启就行啦。<br><img src="http://images.harryin.cn/tensorflow1image016.png" alt="重启界面"></p>
+<h3 id="重启登录以及设置"><a href="#重启登录以及设置" class="headerlink" title="重启登录以及设置"></a>重启登录以及设置</h3><p>&emsp;&emsp;重启登录只要输入之前设置的用户和密码<br><img src="http://images.harryin.cn/tensorflow1image017.png" alt="登录界面"><br>&emsp;&emsp;然后输入<code>sudo passwd root</code>，即可初次为root用户设置密码</p>
+<h2 id="Ubuntu安装后的准备工作"><a href="#Ubuntu安装后的准备工作" class="headerlink" title="Ubuntu安装后的准备工作"></a>Ubuntu安装后的准备工作</h2><h3 id="安装ssh"><a href="#安装ssh" class="headerlink" title="安装ssh"></a>安装ssh</h3><p>&emsp;&emsp;输入<code>Apt-get install openssh-server</code><br>&emsp;&emsp;启动ssh，输入<code>Service ssh start</code><br>&emsp;&emsp;开机自启，发现ubuntu中没有chkconfig工具。</p>
+<h3 id="自启动ssh"><a href="#自启动ssh" class="headerlink" title="自启动ssh"></a>自启动ssh</h3><p>&emsp;&emsp;没有chkconfig，但是ubuntu中有一个类似的工具，sysv-rc-conf<br>&emsp;&emsp;输入<code>apt-get install sysv-rc-conf</code>安装即可<br>&emsp;&emsp;然后sysv-rc-conf即可</p>
+<h2 id="安装显卡驱动"><a href="#安装显卡驱动" class="headerlink" title="安装显卡驱动"></a>安装显卡驱动</h2><h3 id="检查显卡型号"><a href="#检查显卡型号" class="headerlink" title="检查显卡型号"></a>检查显卡型号</h3><p>&emsp;&emsp;输入<code>lshw -numeric -C display</code> 如<br>    <img src="http://images.harryin.cn/tensorflow1image018.png" alt="查看显卡型号"><br>可以看到我的显卡型号</p>
+<h3 id="显卡驱动安装准备工作"><a href="#显卡驱动安装准备工作" class="headerlink" title="显卡驱动安装准备工作"></a>显卡驱动安装准备工作</h3><p>&emsp;&emsp;首先要暂停了ubuntu自带的nouveau，再安装显卡驱动，不然会出错。</p>
+<p>&emsp;&emsp;首先把驱动加入黑名单中:vim /etc/modprobe.d/blacklist.conf 在这个文件中加入</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">blacklist </span>nouveau</span><br><span class="line"><span class="keyword">blacklist </span><span class="keyword">lbm-nouveau</span></span><br><span class="line"><span class="keyword">options </span>nouveau modeset=<span class="number">0</span></span><br><span class="line">alias nouveau off</span><br><span class="line">alias <span class="keyword">lbm-nouveau </span>off</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;再用以下命令禁用nouveau内核</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo options nouveau modeset=0 | sudo tee -a /etc/modprobe.d/nouveau-kms.conf  </span><br><span class="line">sudo update-initramfs –u</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;重启：reboot之后就可以了。<br>&emsp;&emsp;具体的显卡驱动的安装在安装cuda的时候安装，多次证明还是利用cuda安装不会出问题。</p>
+<h2 id="安装cuda"><a href="#安装cuda" class="headerlink" title="安装cuda"></a>安装cuda</h2><h3 id="cuda选择与安装"><a href="#cuda选择与安装" class="headerlink" title="cuda选择与安装"></a>cuda选择与安装</h3><p>&emsp;&emsp;cuda需要去官网查看下载对应版本，我是下载的ubuntu1604版本的<br>&emsp;&emsp;<a target="_blank" rel="noopener" href="https://developer.nvidia.com/cuda-downloads">https://developer.nvidia.com/cuda-downloads</a>注意下载runfile文件，deb格式的安装会有一些意想不到的问题。<br><img src="http://images.harryin.cn/tensorflow1image019.png" alt="CUDA下载"><br>&emsp;&emsp;输入<code>sh cuda_8.0.61_375.26_linux.run</code>安装即可。</p>
+<p>&emsp;&emsp;下面就是一步一步点即可，这个过程中也安装了显卡驱动，所以之前查看完显卡驱动之后可以选择不安装。</p>
+<h3 id="cuda环境变量配置"><a href="#cuda环境变量配置" class="headerlink" title="cuda环境变量配置"></a>cuda环境变量配置</h3><p>&emsp;&emsp;在 <code>~/.bashrc</code>文件中添加</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export PATH=<span class="regexp">/usr/local</span><span class="regexp">/cuda-8.0/bin</span><span class="variable">$&#123;</span><span class="symbol">PATH:</span>+<span class="symbol">:</span><span class="variable">$&#123;</span>PATH&#125;&#125;</span><br><span class="line">export LD_LIBRARY_PATH=<span class="variable">$LD_LIBRARY_PATH</span><span class="symbol">:/usr/local/cuda/lib64/</span></span><br><span class="line">export CUDA_HOME=<span class="regexp">/usr/local</span><span class="regexp">/cuda</span></span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;前两个是cuda官网安装文档中建议的变量，第三个是tensorflow-GPU版本要求的变量<br>&emsp;&emsp;然后重新生成一下<code>source ~/.bashrc</code></p>
+<h3 id="检查显卡驱动安装结果"><a href="#检查显卡驱动安装结果" class="headerlink" title="检查显卡驱动安装结果"></a>检查显卡驱动安装结果</h3><p>&emsp;&emsp;这时候可以一起检查下显卡驱动的结果了<code>nvidia-smi</code><br><img src="http://images.harryin.cn/tensorflow1image020.png" alt="显卡运行情况"></p>
+<h2 id="安装深度学习库cuDNN"><a href="#安装深度学习库cuDNN" class="headerlink" title="安装深度学习库cuDNN"></a>安装深度学习库cuDNN</h2><p>&emsp;&emsp;到官网下载cudnn，需要注册，填很多表，然后选择对应的学习库<br><img src="http://images.harryin.cn/tensorflow1image021.png" alt="cudnn对应库选择"><br>&emsp;&emsp;我选择的是5.1版本的，因为版本7的实际安装之后出现了一些没能解决的问题。<br>&emsp;&emsp;然后解压<code>tar xvzf cudnn-8.0-linux-x64-v5.1.tgz</code>之后<br>将其复制到相应路径</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cp cuda<span class="regexp">/include/</span>cudnn.h <span class="regexp">/usr/</span>local<span class="regexp">/cuda/</span>include</span><br><span class="line">cp cuda<span class="regexp">/lib64/</span>libcudnn* <span class="regexp">/usr/</span>local<span class="regexp">/cuda/</span>lib64</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;并且修改文件访问权限</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod a+r <span class="regexp">/usr/</span>local<span class="regexp">/cuda/</span>include<span class="regexp">/cudnn.h /</span>usr<span class="regexp">/local/</span>cuda<span class="regexp">/lib64/</span>libcudnn*</span><br></pre></td></tr></table></figure>
+<h2 id="安装Anaconda"><a href="#安装Anaconda" class="headerlink" title="安装Anaconda"></a>安装Anaconda</h2><h3 id="下载Anaconda"><a href="#下载Anaconda" class="headerlink" title="下载Anaconda"></a>下载Anaconda</h3><p>&emsp;&emsp;在网上下载Anaconda，选择linux python 3.6版本，<a target="_blank" rel="noopener" href="https://www.anaconda.com/download/">https://www.anaconda.com/download/</a>,<br>&emsp;&emsp;得到一个Anaconda3-4.4.0-Linux-x86_64.sh</p>
+<h3 id="安装Anaconda-1"><a href="#安装Anaconda-1" class="headerlink" title="安装Anaconda"></a>安装Anaconda</h3><p>&emsp;&emsp;bash Anaconda3-4.4.0-Linux-x86_64.sh，这样安装就可以路径选择时 输入<code>/usr/anaconda3</code>即可<br>此上都是在root用户下安装配置。</p>
+<h3 id="Python降级"><a href="#Python降级" class="headerlink" title="Python降级"></a>Python降级</h3><p>&emsp;&emsp;Anaconda3安装的python3是python3.6，但是tensorflow需要用python3.5版本<br>&emsp;&emsp;所以需要降级：<code>conda install python=3.5</code>即可</p>
+<h3 id="创建并切换用户"><a href="#创建并切换用户" class="headerlink" title="创建并切换用户"></a>创建并切换用户</h3><p>&emsp;&emsp;创建新用户 <code>useradd tf2</code><br>&emsp;&emsp;为新用户设置密码<code>pass tf2</code><br>&emsp;&emsp;切换用户 <code>sudo tf2</code></p>
+<h3 id="安装虚拟环境"><a href="#安装虚拟环境" class="headerlink" title="安装虚拟环境"></a>安装虚拟环境</h3><p>&emsp;&emsp;切换到tf2用户下，进行安装，首先要给tf2用户权限</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">chown</span> -R tf2 /usr/anaconda3</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;创建名字叫tensorflow的虚拟环境，指定python版本为3.5.2</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create --name tensorflow python=<span class="number">3.5</span><span class="number">.2</span></span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;显示所有环境名字和路径<code>conda info --envs</code><br>&emsp;&emsp;使用环境和退出环境<code>activate tensorflow/deactivate tensorflow</code><br>&emsp;&emsp;进入环境之后就可以安装各种东西 进行运算啦<code>pip install tensorflow-gpu</code><br>&emsp;&emsp;安装keras输入<code>conda install keras</code><br>&emsp;&emsp;克隆环境<code>conda create -n my_th --clone tensorflow</code><br>&emsp;&emsp;删除环境<code>conda remove -n my_th --all</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/03/15/tensorflow%E5%AD%A6%E4%B9%A0%E7%B3%BB%E5%88%97(1)/" data-id="ckmapmcfg000458vv22yxbdvh" data-title="Tensorflow学习系列(1)——环境配置" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-tensorflow-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习,tensorflow,深度学习</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/03/15/Angular-Flask%E4%BC%A0%E8%BE%93Protobuf/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Angular-Flask传输Protobuf数据(Flask系列1)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/05/06/ArcMap1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">ArcMap使用技巧之统计功能</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ArcGIS/">ArcGIS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ArcGIS/" rel="tag">ArcGIS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python-Angular-Flask/" rel="tag">Python,Angular,Flask</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-tensorflow-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习,tensorflow,深度学习</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ArcGIS/" style="font-size: 10px;">ArcGIS</a> <a href="/tags/Python-Angular-Flask/" style="font-size: 10px;">Python,Angular,Flask</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-tensorflow-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习,tensorflow,深度学习</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/03/15/Angular-Flask%E4%BC%A0%E8%BE%93Protobuf/">Angular-Flask传输Protobuf数据(Flask系列1)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/03/15/tensorflow%E5%AD%A6%E4%B9%A0%E7%B3%BB%E5%88%97(1)/">Tensorflow学习系列(1)——环境配置</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/06/ArcMap1/">ArcMap使用技巧之统计功能</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

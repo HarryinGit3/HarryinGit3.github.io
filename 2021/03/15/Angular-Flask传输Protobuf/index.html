@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Angular-Flask传输Protobuf数据(Flask系列1) | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="本文主要是讲述通过Angular向Flask通过restful发送Protobuf类型的二进制流数据和返回二进制流数据的具体过程，以及其中一些注意点。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Angular-Flask传输Protobuf数据(Flask系列1)">
+<meta property="og:url" content="http://example.com/2021/03/15/Angular-Flask%E4%BC%A0%E8%BE%93Protobuf/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="本文主要是讲述通过Angular向Flask通过restful发送Protobuf类型的二进制流数据和返回二进制流数据的具体过程，以及其中一些注意点。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://images.harryin.cn/recoding.png">
+<meta property="article:published_time" content="2021-03-15T14:55:53.102Z">
+<meta property="article:modified_time" content="2018-09-11T11:52:58.153Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Python,Angular,Flask">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://images.harryin.cn/recoding.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Angular-Flask传输Protobuf" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/03/15/Angular-Flask%E4%BC%A0%E8%BE%93Protobuf/" class="article-date">
+  <time class="dt-published" datetime="2021-03-15T14:55:53.102Z" itemprop="datePublished">2021-03-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Python/">Python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Angular-Flask传输Protobuf数据(Flask系列1)
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>本文主要是讲述通过Angular向Flask通过restful发送Protobuf类型的二进制流数据和返回二进制流数据的具体过程，以及其中一些注意点。</p>
+<span id="more"></span>
+<h2 id="Angular发送Protobuf类型Request"><a href="#Angular发送Protobuf类型Request" class="headerlink" title="Angular发送Protobuf类型Request"></a>Angular发送Protobuf类型Request</h2><p>通过http发送post请求，几点注意点。</p>
+<blockquote>
+<p>this.http.post(url,body,options).subscribe((response:any)=&gt;{ })  </p>
+</blockquote>
+<ol>
+<li><p>post请求中的body直接赋值protobuf类型数据即可  </p>
+</li>
+<li><p>options中需要定义<code>&#39;Content-Type&#39;: &#39;application/octet-stream&#39;</code></p>
+<h2 id="Angular获取并解析Protobuf类型Response"><a href="#Angular获取并解析Protobuf类型Response" class="headerlink" title="Angular获取并解析Protobuf类型Response"></a>Angular获取并解析Protobuf类型Response</h2><p>Angular获取返回的Protobuf类型数据需要注意几点  </p>
+<blockquote>
+<p>this.http.post(url,body,options).subscribe((response:any)=&gt;{ })  </p>
+</blockquote>
+</li>
+<li><p><code>response</code>类型设置为<code>any</code>  </p>
+</li>
+<li><p>options中定义<code>responseType</code> 为<code>responseType: &#39;ArrayBuffer&#39; as &#39;json&#39;</code>,切记，无论什么返回类型，一定要添加<code>as &#39;json&#39;</code>  </p>
+</li>
+<li><p>综上，利用Protobuf类型数据传输，Angular的options定义为：  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const httpOptions &#x3D; &#123;</span><br><span class="line">      headers: new HttpHeaders(&#123;</span><br><span class="line">        &#39;Content-Type&#39;: &#39;application&#x2F;octet-stream&#39;</span><br><span class="line">      &#125;),</span><br><span class="line">      responseType: &#39;ArrayBuffer&#39; as &#39;json&#39;</span><br><span class="line">    &#125;;</span><br></pre></td></tr></table></figure></li>
+<li><p>获取到返回的buffer数据之后，具体Protobuf的解析如下</p>
+<blockquote>
+<p>const data = GeoThinking.ML.catalog.QueryResponse.decode(new Uint8Array(result));</p>
+</blockquote>
+</li>
+</ol>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;<code>GeoThinking.ML.catalog.QueryResponse</code>是protobuf中定义的类型</p>
+<h2 id="Flask获取并解析ProtoBuf类型Request"><a href="#Flask获取并解析ProtoBuf类型Request" class="headerlink" title="Flask获取并解析ProtoBuf类型Request"></a>Flask获取并解析ProtoBuf类型Request</h2><p>后端flask框架获取解析Protobuf类型数据有几点注意点：  </p>
+<ol>
+<li>前端所传输的数据通过<code>request.data</code>获取  </li>
+<li>获取到的数据被flask二次编码，原ArrayBuffer类型的数据变为json格式的二进制数据，如图：<br><img src="http://images.harryin.cn/recoding.png" alt="重新编码数据" title="重新编码二进制数据"></li>
+<li>通过对其重新遍历，转换格式为二进制数据。具体代码如下：  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">d &#x3D; x.decode(&#39;ASCii&#39;)</span><br><span class="line">requestJson&#x3D;json.loads(d,object_pairs_hook&#x3D;OrderedDict)</span><br><span class="line">tempList&#x3D;[]</span><br><span class="line">for k,v in requestJson.items():</span><br><span class="line">    tempList.append(v)</span><br><span class="line">tempList&#x3D;bytes(tempList)        </span><br></pre></td></tr></table></figure>
+并通过实例化ProtoBuf的类型后，<code>ParseFromString</code>进行解码：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ca &#x3D; catalog_pb2.QueryRequest()</span><br><span class="line">ca.ParseFromString(bytes(tempList))</span><br></pre></td></tr></table></figure>
+<h2 id="Flask发送Protobuf类型Response"><a href="#Flask发送Protobuf类型Response" class="headerlink" title="Flask发送Protobuf类型Response"></a>Flask发送Protobuf类型Response</h2>对后端向前端发送Protobuf类型请求，需要定义<code>headers</code>：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">headers &#x3D; &#123;</span><br><span class="line">        &#39;Content-Type&#39;: &#39;application&#x2F;octet-stream&#39;,</span><br><span class="line">        &#39;Access-Control-Allow-Headers&#39;: &#39;Content-Type&#39;,</span><br><span class="line">        &#39;Access-Control-Allow-Origin&#39;: &#39;*&#39;,</span><br><span class="line">        &#39;Access-Control-Allow-Methods&#39;: &#39;POST,OPTIONS&#39;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+将<code>&#39;Content-Type&#39;</code>定义为<code>&#39;application/octet-stream&#39;</code>即可。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/03/15/Angular-Flask%E4%BC%A0%E8%BE%93Protobuf/" data-id="ckmapmcf9000158vv24knbvv2" data-title="Angular-Flask传输Protobuf数据(Flask系列1)" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python-Angular-Flask/" rel="tag">Python,Angular,Flask</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2021/03/15/tensorflow%E5%AD%A6%E4%B9%A0%E7%B3%BB%E5%88%97(1)/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Tensorflow学习系列(1)——环境配置</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ArcGIS/">ArcGIS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ArcGIS/" rel="tag">ArcGIS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python-Angular-Flask/" rel="tag">Python,Angular,Flask</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-tensorflow-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习,tensorflow,深度学习</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ArcGIS/" style="font-size: 10px;">ArcGIS</a> <a href="/tags/Python-Angular-Flask/" style="font-size: 10px;">Python,Angular,Flask</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-tensorflow-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">机器学习,tensorflow,深度学习</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/03/15/Angular-Flask%E4%BC%A0%E8%BE%93Protobuf/">Angular-Flask传输Protobuf数据(Flask系列1)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/03/15/tensorflow%E5%AD%A6%E4%B9%A0%E7%B3%BB%E5%88%97(1)/">Tensorflow学习系列(1)——环境配置</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/06/ArcMap1/">ArcMap使用技巧之统计功能</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
